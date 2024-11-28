@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Challenge1 from './challenges/challenge1/page';
 import Layout from './components/Layout';
-import Home from './challenges/Home';
+import Home from './components/Home';
 
 function App() {
   return (

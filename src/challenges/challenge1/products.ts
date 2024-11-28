@@ -1,5 +1,7 @@
 // source: https://diviengine.com/woocommerce-sample-products-csv-import-file-freebie/
 
+export type Cart = Record<string, number>;
+
 export type Product = {
   id: number;
   name: string;
