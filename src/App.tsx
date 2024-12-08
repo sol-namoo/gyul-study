@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Challenge1 from './challenges/challenge1/page';
 import Layout from './components/Layout';
 import Home from './components/Home';
+import Challenge1 from './challenges/challenge1/Challenge1';
+import Challenge2 from './challenges/challenge2/Challenge2';
 
 function App() {
   return (
@@ -11,11 +12,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="challenge1" element={<Challenge1 />} />
+          <Route path="challenge2" element={<Challenge2 />} />
         </Route>
-        {/* <Route path="/gallery" element={<DetailCardPage />}>
-          <Route path=":cardId" element={<DetailCard />} />
-        </Route> */}
-        {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
     </div>
   );
