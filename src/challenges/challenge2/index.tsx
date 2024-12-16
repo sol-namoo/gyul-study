@@ -1,4 +1,4 @@
-import { Autocomplete } from './Autocomplete';
+import { Autocomplete } from './component/Autocomplete';
 import { items } from './items';
 
 function Challenge2() {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { AutocompleteProps, Item } from './types';
+import { AutocompleteProps, Item } from '../types';
 
-export function Autocomplete({ source, onSelected }: AutocompleteProps) {
+export const useAutoComplete = ({ source, onSelected }: AutocompleteProps) => {
   const [input, setInput] = useState<string>('');
-  const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const [list, setList] = useState<Item[]>(source);
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const [highlightIdx, setHighlightIdx] = useState<number>(-1);
 
   const openList = () => {
@@ -31,7 +31,7 @@ export function Autocomplete({ source, onSelected }: AutocompleteProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     setHighlightIdx(-1);
-    // openList();
+
     if (e.target.value) {
       setList(
         source.filter((item) =>
@@ -73,33 +73,15 @@ export function Autocomplete({ source, onSelected }: AutocompleteProps) {
     return () => document.body.removeEventListener('click', handleClickAway);
   }, []);
 
-  return (
-    <div className="autocomplete-root">
-      <input
-        type="text"
-        className="input input-bordered w-full"
-        value={input}
-        onClick={openList}
-        onFocus={openList}
-        onChange={handleInputChange}
-        onKeyDown={handleInputKeyDown}
-      />
-      {isListOpen && (
-        <ul className="mt-2 rounded-md drop-shadow p-2 bg-base-100 w-full">
-          {list.map((item, index) => (
-            <li
-              key={item.value}
-              className={`${
-                index === highlightIdx ? 'bg-base-200' : ''
-              } py-2 px-4 cursor-pointer rounded-md`}
-              onMouseEnter={() => highlightItem(index)}
-              onClick={selectItem}
-            >
-              <a>{item.label}</a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
+  return {
+    input,
+    list,
+    isListOpen,
+    highlightIdx,
+    selectItem,
+    openList,
+    highlightItem,
+    handleInputChange,
+    handleInputKeyDown,
+  };
+};
